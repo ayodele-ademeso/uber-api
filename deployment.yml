@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uber-api
+  labels:
+    app: uber-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uber-api
+  template:
+    metadata:
+      labels:
+        app: uber-api
+    spec:
+      containers:
+      - name: uber-api
+        image: 440772819144.dkr.ecr.us-east-1.amazonaws.com/uber-api
+        ports:
+        - containerPort: 5000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: uber-api
+spec:
+  selector:
+    app: uber-api
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 6000
