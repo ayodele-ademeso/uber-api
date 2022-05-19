@@ -5,7 +5,7 @@ metadata:
   labels:
     app: uber-api
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: uber-api
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: uber-api
-        image: 440772819144.dkr.ecr.us-east-1.amazonaws.com/uber-api
+        image: seven02/uberapi
         ports:
         - containerPort: 5000
 
@@ -27,9 +27,11 @@ kind: Service
 metadata:
   name: uber-api
 spec:
+  type: LoadBalancer
   selector:
     app: uber-api
   ports:
     - protocol: TCP
       port: 5000
-      targetPort: 6000
+      targetPort: 5000
+      nodePort: 32500
