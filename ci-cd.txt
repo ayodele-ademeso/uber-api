@@ -1,0 +1,7 @@
+run tests
+docker login
+docker build
+docker tag
+docker push
+eks login: aws eks --region *your_aws_region* update-kubeconfig --name *your_eks_cluster_name*
+kubectl apply
