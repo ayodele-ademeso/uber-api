@@ -1,12 +1,11 @@
 FROM python:latest
 
-RUN mkdir /build
-WORKDIR /build
+WORKDIR /app
 
-COPY app/requirements.txt /build/
+COPY app/requirements.txt /app
 RUN pip install -r requirements.txt
 
-COPY app /build/
+COPY app /app
 
 EXPOSE 5000
 
